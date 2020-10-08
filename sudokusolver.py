@@ -1,3 +1,4 @@
+import copy
 original = [
   [5,3,0,0,7,0,0,0,0],
   [6,0,0,1,9,5,0,0,0],
@@ -10,7 +11,7 @@ original = [
   [0,0,0,0,8,0,0,7,9]
   ]
 
-solution = original
+solution = copy.deepcopy(original)
 empty = []
 for i in range(9):
   for j in range(9):
@@ -53,6 +54,7 @@ def checksquare(sud, row, col, num): #True is correct
   return occurance == 0
 
 def solvesquare(row, col, num):
+  global solution
   run = True
   while (run == True and (num != None and num < 9)):
     num += 1
@@ -70,10 +72,12 @@ def solvesquare(row, col, num):
 
 
 def resetafter(j):
+  global empty
   for k in range(j+1, len(empty), 1):
     empty[k][0] = 0
 
-
+printsud(solution)
+print("")
 printsud(original)
 print("")
 
@@ -92,3 +96,5 @@ while i < len(empty):
 
 for x in range(len(empty)): solution[empty[x][1]][empty[x][2]] = empty[x][0]
 printsud(solution)
+print("")
+printsud(original)
